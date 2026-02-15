@@ -136,7 +136,7 @@ El proyecto implementa un sistema de diseño personalizado con colores definidos
 **Tu Nombre**
 - GitHub: [@JuanciDev, ](https://github.com/JuanciDev)
 - LinkedIn: [Juan Manuel Berraz Montyn],(https://www.linkedin.com/in/juan-manuel-berraz-montyn/)
-- Frontend Mentor: [@tu-usuario](https://www.frontendmentor.io/profile/tu-usuario)
+
 
 ## 📝 Licencia
 
