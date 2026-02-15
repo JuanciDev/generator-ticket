@@ -1,73 +1,148 @@
-# React + TypeScript + Vite
+# 🎟️ Conference Ticket Generator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Generador de tickets personalizados para conferencias, desarrollado como solución al desafío de [Frontend Mentor](https://www.frontendmentor.io/challenges/conference-ticket-generator-oq5gFIU12w).
 
-Currently, two official plugins are available:
+## 📸 Preview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<!-- Agregá acá una captura de pantalla o GIF del proyecto funcionando -->
 
-## React Compiler
+## ✨ Características
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+- 📝 Formulario con validación en tiempo real
+- 🖼️ Carga y previsualización de avatar/foto de perfil
+- 🎨 Generación dinámica de ticket personalizado
+- ✅ Validación de campos (nombre completo, email, usuario de GitHub)
+- 💾 Gestión de estado global con Zustand
+- 📱 Diseño responsive y adaptable
+- 🎯 Feedback visual de errores en formularios
 
-## Expanding the ESLint configuration
+## 🛠️ Tecnologías Utilizadas
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **React 18** - Biblioteca de UI
+- **TypeScript** - Tipado estático
+- **Tailwind CSS** - Framework de estilos utility-first
+- **React Hook Form** - Manejo y validación de formularios
+- **Zustand** - Gestión de estado global
+- **Vite** - Build tool y dev server
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🚀 Instalación y Uso
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Prerrequisitos
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Node.js (versión 16 o superior)
+- npm o yarn
+
+### Pasos de instalación
+
+1. **Cloná el repositorio:**
+```bash
+git clone https://github.com/tu-usuario/ticket-generator.git
+cd ticket-generator
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+2. **Instalá las dependencias:**
+```bash
+npm install
 ```
+
+3. **Ejecutá el proyecto en modo desarrollo:**
+```bash
+npm run dev
+```
+
+La aplicación estará disponible en `http://localhost:5173`
+
+### Build de producción
+```bash
+npm run build
+npm run preview
+```
+
+## 📁 Estructura del Proyecto
+```
+src/
+├── components/
+│   ├── Form/
+│   │   ├── Form.tsx           # Formulario principal
+│   │   ├── TextInput.tsx      # Input de texto reutilizable
+│   │   ├── UploadInput.tsx    # Input para subir imágenes
+│   │   └── Button.tsx         # Botón del formulario
+│   └── Ticket/
+│       └── Ticket.tsx          # Componente del ticket generado
+├── hooks/
+│   └── UseShowTicket.tsx       # Hook para mostrar/ocultar ticket
+├── store/
+│   └── User.ts                 # Store de Zustand con datos del usuario
+├── App.tsx                     # Componente principal
+└── index.css                   # Estilos globales y tema
+```
+
+## 🎯 Funcionalidades Destacadas
+
+### Validación de Formularios
+Implementación de validaciones robustas usando React Hook Form:
+- Campo obligatorio para nombre completo
+- Validación de formato de email con regex
+- Usuario de GitHub opcional
+- Mensajes de error descriptivos
+
+### Gestión de Estado
+Uso de Zustand para manejar el estado de forma simple y eficiente:
+```typescript
+interface UserData {
+  fullName: string;
+  email: string;
+  gitHubUser: string;
+  url: string;
+}
+```
+
+### Carga de Imágenes
+Sistema de preview instantáneo al seleccionar una imagen usando FileReader API.
+
+## 🎨 Diseño
+
+El proyecto implementa un sistema de diseño personalizado con colores definidos usando la directiva `@theme` de Tailwind:
+
+- **Neutral 0-900**: Escala de grises para textos y fondos
+- **Orange 500-700**: Color principal para CTAs y acentos
+
+## 🧩 Desafíos Técnicos Resueltos
+
+1. **Ajuste de imágenes en contenedores fijos**: Uso de `object-cover` para mantener proporciones
+2. **Validación compleja de emails**: Implementación de regex pattern en React Hook Form
+3. **Estado compartido entre componentes**: Zustand para evitar prop drilling
+4. **Preview de imágenes antes de subir**: FileReader API para convertir a base64
+
+## 📚 Aprendizajes
+
+- Profundización en React Hook Form para formularios complejos
+- Integración de Zustand como alternativa ligera a Redux
+- Trabajo con Tailwind CSS v4 y directiva `@theme`
+- Manejo de archivos y preview de imágenes en React
+- TypeScript para garantizar type-safety en toda la aplicación
+
+## 🔮 Mejoras Futuras
+
+- [ ] Descarga del ticket como imagen (PNG/JPEG)
+- [ ] Compartir ticket en redes sociales
+- [ ] Modo oscuro / claro
+- [ ] Múltiples diseños de tickets
+- [ ] Integración con API de GitHub para validar usuarios
+- [ ] Animaciones de entrada del ticket generado
+
+## 👤 Autor
+
+**Tu Nombre**
+- GitHub: [@JuanciDev, ](https://github.com/JuanciDev)
+- LinkedIn: [Juan Manuel Berraz Montyn],(https://www.linkedin.com/in/juan-manuel-berraz-montyn/)
+- Frontend Mentor: [@tu-usuario](https://www.frontendmentor.io/profile/tu-usuario)
+
+## 📝 Licencia
+
+Este proyecto está bajo la Licencia MIT.
+
+## 🙏 Agradecimientos
+
+- Desafío proporcionado por [Frontend Mentor](https://www.frontendmentor.io)
+- Inspiración y recursos de la comunidad de desarrollo web
